@@ -58,10 +58,16 @@ export default function TicketSection({
 
   const TICKET_MOCK: (() => React.ReactNode)[] = [
     () => (
-      <div className='grid grid-cols-3 gap-4 z-30'>
-        {tickets.map(({ ...res }, index) => (
-          <Ticket key={index} {...res} />
-        ))}
+      <div>
+        {tickets ? (
+          <div className='grid grid-cols-3 gap-4 z-30'>
+            {tickets.map(({ ...res }, index) => (
+              <Ticket key={index} {...res} />
+            ))}
+          </div>
+        ) : (
+          <span>Belum ada tiket mendatang</span>
+        )}
       </div>
     ),
     () => <span>Belum ada riwayat transaksi</span>,

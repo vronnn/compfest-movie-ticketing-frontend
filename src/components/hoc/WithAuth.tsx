@@ -15,11 +15,9 @@ export interface WithAuthProps {
 export default function WithAuth<T>(
   Component: React.ComponentType<T>,
   routePermission: typeof role,
-  withRefetch: false,
 ) {
   const ComponentWithAuth = (props: Omit<T, keyof WithAuthProps>) => {
     const router = useRouter();
-    const { authed } = router.query;
 
     //#region  //*=========== STORE ===========
     const isAuthenticated = useAuthStore.useIsAuthenticated();
@@ -53,9 +51,7 @@ export default function WithAuth<T>(
         }
       };
 
-      if (!isAuthenticated || withRefetch || authed) {
-        loadUser();
-      }
+      loadUser();
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuthenticated]);
@@ -73,8 +69,11 @@ export default function WithAuth<T>(
 
     React.useEffect(() => {
       checkAuth();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+      window.addEventListener('focus', checkAuth);
+      return () => {
+        window.removeEventListener('focus', checkAuth);
+      };
+    }, [checkAuth]);
 
     if (isLoading || !user) {
       return <Loading />;

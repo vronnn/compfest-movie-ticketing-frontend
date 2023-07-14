@@ -11,7 +11,7 @@ import { ApiReturn } from '@/types/api';
 import { role } from '@/types/auth';
 import { TicketProps } from '@/types/ticket';
 
-export default WithAuth(TicketPage, role, false);
+export default WithAuth(TicketPage, role);
 
 function TicketPage() {
   const url = `${process.env.NEXT_PUBLIC_API_PRODUCTION_URL}/ticket`;
