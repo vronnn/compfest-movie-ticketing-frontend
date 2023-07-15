@@ -93,9 +93,12 @@ export default function Withdraw({
           <SearchableSelectInput
             id='bank_id'
             label='Opsi Bank'
-            defaultValue='male'
             options={opsi}
-            className='mb-6'
+            containerClassName='pb-4'
+            placeholder='Pilih Metode'
+            validation={{
+              required: 'Metode pembayaran tidak boleh kosong',
+            }}
           />
           <div className='flex items-center gap-x-2.5'>
             <Button

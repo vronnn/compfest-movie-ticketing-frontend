@@ -233,7 +233,11 @@ export default function SearchableSelectInput({
           </Typography>
         )}
         {!hideError && error && (
-          <Typography variant='c1' color='danger' className='mt-1'>
+          <Typography
+            variant='c1'
+            color='danger'
+            className='mt-1 text-hover-pink'
+          >
             {error?.message?.toString()}
           </Typography>
         )}
