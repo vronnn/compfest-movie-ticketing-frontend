@@ -19,8 +19,8 @@ function TicketPage() {
   return (
     <Layout>
       <SEO title='TMDB | Ticketing' />
-      <main className='min-h-screen bg-base-dark text-white flex flex-col items-center pt-14 justify-start px-16'>
-        <div className='flex items-center self-start'>
+      <main className='bg-base-dark text-white pt-16 pb-8'>
+        <div className='flex items-center self-start px-20'>
           <BaseLink href='/' className='px-1.5'>
             <Typography variant='b3' className='text-base-pre'>
               home
@@ -31,12 +31,9 @@ function TicketPage() {
             <Typography variant='b3'>ticket</Typography>
           </BaseLink>
         </div>
-        {ticketData && (
-          <TicketSection
-            tickets={ticketData?.data}
-            className='translate-y-16'
-          />
-        )}
+        <section className='min-h-screen flex flex-col items-center pt-16 justify-start px-16 relative'>
+          {ticketData && <TicketSection tickets={ticketData?.data} />}
+        </section>
       </main>
     </Layout>
   );

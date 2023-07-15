@@ -107,14 +107,27 @@ const Header: React.FC<HeaderProps> = ({
           ))}
         </ul>
         <ul className='nav-cont'>
-          {links.map(({ label, href, icon: Icon }, index) => (
-            <li key={index} className=''>
-              <Link href={href} className='nav-item group'>
-                <Icon className='nav-icon' />
-                <span className='nav'>{label}</span>
-              </Link>
-            </li>
-          ))}
+          {links.map(({ label, href, icon: Icon }, index) =>
+            label === 'Wallet' ? (
+              <li key={index} className=''>
+                <AccountModal>
+                  {({ openModal }) => (
+                    <button onClick={openModal} className='nav-item group'>
+                      <Icon className='nav-icon' />
+                      <span className='nav'>{label}</span>
+                    </button>
+                  )}
+                </AccountModal>
+              </li>
+            ) : (
+              <li key={index} className=''>
+                <Link href={href} className='nav-item group'>
+                  <Icon className='nav-icon' />
+                  <span className='nav'>{label}</span>
+                </Link>
+              </li>
+            ),
+          )}
         </ul>
       </div>
       {user ? (
